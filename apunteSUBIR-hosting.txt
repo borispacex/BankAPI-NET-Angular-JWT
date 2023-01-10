@@ -1,0 +1,268 @@
+Credenciales
+email: borispacex@gmail.com
+contraseña: boris123
+
+login Name: borisvargas
+______________________________________
+Hosting Id de la cuenta: borisvargas-001
+contraseña: boris123
+
+
+__________________________________________
+Database Name: db_a913b6_BankAPI
+Database Password: BankAPI123
+
+__________________________________________________
+"Data Source=SQL8003.site4now.net;Initial Catalog=db_a913b6_bankapi;User Id=db_a913b6_bankapi_admin;Password=YOUR_DB_PASSWORD
+
+SERVER NAME: SQL8003.site4now.net
+(SQL SERVER AUTHENTICATION)
+LOGIN: db_a913b6_bankapi_admin
+PASSWORD: BankAPI123
+
+__________________________________________________________________________________________________________________________________
+appsettings.json ------>
+
+"BankConnection": "Data Source=SQL8003.site4now.net;Initial Catalog=db_a913b6_bankapi;User Id=db_a913b6_bankapi_admin;Password=BankAPI123"
+
+
+______________________________________________________________________________________________________________
+SCRIPT BACKUP
+
+GO
+/****** Object:  Table [dbo].[Account]    Script Date: 09/12/2022 3:52:53 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Account](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[AccountType] [int] NOT NULL,
+	[ClientID] [int] NULL,
+	[Balance] [decimal](10, 2) NOT NULL,
+	[RegDate] [datetime] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[AccountType]    Script Date: 09/12/2022 3:52:53 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[AccountType](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [varchar](100) NOT NULL,
+	[RegDate] [datetime] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Administrator]    Script Date: 09/12/2022 3:52:53 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Administrator](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [varchar](200) NOT NULL,
+	[PhoneNumber] [varchar](40) NOT NULL,
+	[Email] [varchar](50) NOT NULL,
+	[Pwd] [varchar](50) NOT NULL,
+	[AdminType] [varchar](30) NOT NULL,
+	[RegDate] [datetime] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[BankTransaction]    Script Date: 09/12/2022 3:52:53 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[BankTransaction](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[AccountID] [int] NOT NULL,
+	[TransactionType] [int] NOT NULL,
+	[Amount] [decimal](10, 2) NOT NULL,
+	[ExternalAccount] [int] NULL,
+	[RegDate] [datetime] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Client]    Script Date: 09/12/2022 3:52:53 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Client](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [varchar](200) NOT NULL,
+	[PhoneNumber] [varchar](40) NOT NULL,
+	[Email] [varchar](50) NULL,
+	[RegDate] [datetime] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Departamento]    Script Date: 09/12/2022 3:52:53 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Departamento](
+	[IdDepartamento] [int] IDENTITY(1,1) NOT NULL,
+	[Nombre] [varchar](50) NULL,
+	[FechaCreacion] [datetime] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[IdDepartamento] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Empleado]    Script Date: 09/12/2022 3:52:53 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Empleado](
+	[IdEmpleado] [int] IDENTITY(1,1) NOT NULL,
+	[NombreCompleto] [varchar](50) NULL,
+	[IdDepartamento] [int] NULL,
+	[Sueldo] [decimal](10, 2) NULL,
+	[FechaContrato] [datetime] NULL,
+	[FechaCreacion] [datetime] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[IdEmpleado] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[TransactionType]    Script Date: 09/12/2022 3:52:53 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[TransactionType](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [varchar](100) NOT NULL,
+	[RegDate] [datetime] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET IDENTITY_INSERT [dbo].[Account] ON 
+GO
+INSERT [dbo].[Account] ([ID], [AccountType], [ClientID], [Balance], [RegDate]) VALUES (1, 1, 1, CAST(10000.00 AS Decimal(10, 2)), CAST(N'2022-11-15T11:25:48.283' AS DateTime))
+GO
+INSERT [dbo].[Account] ([ID], [AccountType], [ClientID], [Balance], [RegDate]) VALUES (2, 2, 2, CAST(5000.00 AS Decimal(10, 2)), CAST(N'2022-11-15T11:29:49.450' AS DateTime))
+GO
+SET IDENTITY_INSERT [dbo].[Account] OFF
+GO
+SET IDENTITY_INSERT [dbo].[AccountType] ON 
+GO
+INSERT [dbo].[AccountType] ([ID], [Name], [RegDate]) VALUES (1, N'Administrador', CAST(N'2020-01-01T00:00:00.000' AS DateTime))
+GO
+INSERT [dbo].[AccountType] ([ID], [Name], [RegDate]) VALUES (2, N'Corriente', CAST(N'2021-01-01T00:00:00.000' AS DateTime))
+GO
+SET IDENTITY_INSERT [dbo].[AccountType] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Administrator] ON 
+GO
+INSERT [dbo].[Administrator] ([ID], [Name], [PhoneNumber], [Email], [Pwd], [AdminType], [RegDate]) VALUES (1, N'Boris', N'123123123', N'boris@test.com', N'1234', N'Super', CAST(N'2022-01-01T00:00:00.000' AS DateTime))
+GO
+INSERT [dbo].[Administrator] ([ID], [Name], [PhoneNumber], [Email], [Pwd], [AdminType], [RegDate]) VALUES (2, N'Jose', N'000123123', N'jose@test.com', N'1234', N'Viewer', CAST(N'2022-01-01T00:00:00.000' AS DateTime))
+GO
+SET IDENTITY_INSERT [dbo].[Administrator] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Client] ON 
+GO
+INSERT [dbo].[Client] ([ID], [Name], [PhoneNumber], [Email], [RegDate]) VALUES (1, N'Boris actualizado', N'123123123', N'bvargas@test.com', CAST(N'2022-11-11T23:28:20.873' AS DateTime))
+GO
+INSERT [dbo].[Client] ([ID], [Name], [PhoneNumber], [Email], [RegDate]) VALUES (2, N'Pedro', N'00045678', N'pedro@test.com', CAST(N'2022-11-11T23:29:06.960' AS DateTime))
+GO
+SET IDENTITY_INSERT [dbo].[Client] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Departamento] ON 
+GO
+INSERT [dbo].[Departamento] ([IdDepartamento], [Nombre], [FechaCreacion]) VALUES (1, N'Administracion', CAST(N'2022-12-07T16:54:40.967' AS DateTime))
+GO
+INSERT [dbo].[Departamento] ([IdDepartamento], [Nombre], [FechaCreacion]) VALUES (2, N'Marketing', CAST(N'2022-12-07T16:54:40.967' AS DateTime))
+GO
+INSERT [dbo].[Departamento] ([IdDepartamento], [Nombre], [FechaCreacion]) VALUES (3, N'Ventas', CAST(N'2022-12-07T16:54:40.967' AS DateTime))
+GO
+INSERT [dbo].[Departamento] ([IdDepartamento], [Nombre], [FechaCreacion]) VALUES (4, N'Comercio', CAST(N'2022-12-07T16:54:40.967' AS DateTime))
+GO
+SET IDENTITY_INSERT [dbo].[Departamento] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Empleado] ON 
+GO
+INSERT [dbo].[Empleado] ([IdEmpleado], [NombreCompleto], [IdDepartamento], [Sueldo], [FechaContrato], [FechaCreacion]) VALUES (1, N'Franco Hernandez', 1, CAST(1400.00 AS Decimal(10, 2)), CAST(N'2021-01-11T00:00:00.000' AS DateTime), CAST(N'2022-12-07T16:54:40.970' AS DateTime))
+GO
+INSERT [dbo].[Empleado] ([IdEmpleado], [NombreCompleto], [IdDepartamento], [Sueldo], [FechaContrato], [FechaCreacion]) VALUES (2, N'Boris Vargas', 4, CAST(4400.00 AS Decimal(10, 2)), CAST(N'2022-01-01T00:00:00.000' AS DateTime), CAST(N'2022-12-07T16:54:40.970' AS DateTime))
+GO
+SET IDENTITY_INSERT [dbo].[Empleado] OFF
+GO
+ALTER TABLE [dbo].[Account] ADD  DEFAULT (getdate()) FOR [RegDate]
+GO
+ALTER TABLE [dbo].[AccountType] ADD  DEFAULT (getdate()) FOR [RegDate]
+GO
+ALTER TABLE [dbo].[Administrator] ADD  DEFAULT (getdate()) FOR [RegDate]
+GO
+ALTER TABLE [dbo].[BankTransaction] ADD  DEFAULT (getdate()) FOR [RegDate]
+GO
+ALTER TABLE [dbo].[Client] ADD  DEFAULT (getdate()) FOR [RegDate]
+GO
+ALTER TABLE [dbo].[Departamento] ADD  DEFAULT (getdate()) FOR [FechaCreacion]
+GO
+ALTER TABLE [dbo].[Empleado] ADD  DEFAULT (getdate()) FOR [FechaCreacion]
+GO
+ALTER TABLE [dbo].[TransactionType] ADD  DEFAULT (getdate()) FOR [RegDate]
+GO
+ALTER TABLE [dbo].[Account]  WITH CHECK ADD FOREIGN KEY([AccountType])
+REFERENCES [dbo].[AccountType] ([ID])
+GO
+ALTER TABLE [dbo].[Account]  WITH CHECK ADD FOREIGN KEY([ClientID])
+REFERENCES [dbo].[Client] ([ID])
+GO
+ALTER TABLE [dbo].[BankTransaction]  WITH CHECK ADD FOREIGN KEY([AccountID])
+REFERENCES [dbo].[Account] ([ID])
+GO
+ALTER TABLE [dbo].[BankTransaction]  WITH CHECK ADD FOREIGN KEY([TransactionType])
+REFERENCES [dbo].[TransactionType] ([ID])
+GO
+ALTER TABLE [dbo].[Empleado]  WITH CHECK ADD FOREIGN KEY([IdDepartamento])
+REFERENCES [dbo].[Departamento] ([IdDepartamento])
+GO
+
+____________________________________________________________________________
+VS Webdeploy
+descarga archivo: site1.PublishSettings
+
+
+________________________________________________________________________________
+https://borisvargas-001-site1.atempurl.com/swagger/index.html
+
+-- USER ADMIN
+{
+    "email": "boris@test.com",
+    "pwd": "1234"
+}
+-- USER VIEWER
+{
+    "email": "jose@test.com",
+    "pwd": "1234"
+}
